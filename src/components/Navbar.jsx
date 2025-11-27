@@ -22,7 +22,9 @@ export default function Navbar() {
         scrolled ? "backdrop-blur-lg bg-base-100/70" : "bg-base-100"
       }`}
     >
+      {/* Navbar Start */}
       <div className="navbar-start">
+        {/* Mobile dropdown */}
         <div className="dropdown">
           <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
             <svg
@@ -71,11 +73,14 @@ export default function Navbar() {
             </li>
           </ul>
         </div>
+
+        {/* Logo */}
         <Link prefetch={false} href="/" className="font-bold text-2xl">
           StudyPAL
         </Link>
       </div>
 
+      {/* Navbar Center */}
       <div className="navbar-center hidden lg:flex font-bold">
         <ul className="menu menu-horizontal px-1">
           <li>
@@ -106,13 +111,53 @@ export default function Navbar() {
         </ul>
       </div>
 
+      {/* Navbar End */}
       <div className="navbar-end">
         {isSignedIn ? (
-          <SignOutButton>
-            <button className="btn text-white btn-primary rounded-4xl px-8 hover:bg-secondary transition-all duration-200 ease-in-out">
-              Logout
-            </button>
-          </SignOutButton>
+          <div className="dropdown dropdown-end">
+            {/* Dropdown button with hamburger icon */}
+            <div
+              tabIndex={0}
+              className="btn btn-primary rounded-4xl px-6 flex items-center justify-center"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="h-5 w-5"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="white"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
+                  d="M4 6h16M4 12h16M4 18h16"
+                />
+              </svg>
+            </div>
+
+            <ul
+              tabIndex="-1"
+              className="dropdown-content menu bg-base-100 rounded-box z-1 w-52 p-2 shadow-sm mt-2"
+            >
+              <li className="font-bold py-2 px-3">{user?.fullName}</li>
+              <li>
+                <Link href="/add-courses" className="py-2 px-3">
+                  Add Course
+                </Link>
+              </li>
+              <li>
+                <Link href="/manage-courses" className="py-2 px-3">
+                  Manage Courses
+                </Link>
+              </li>
+              <li>
+                <SignOutButton>
+                  <button className="w-full text-left py-2 px-3">Logout</button>
+                </SignOutButton>
+              </li>
+            </ul>
+          </div>
         ) : (
           <Link
             prefetch={false}
