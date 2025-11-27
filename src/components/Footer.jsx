@@ -6,13 +6,14 @@ export default function Footer() {
     <footer className="footer sm:footer-horizontal bg-primary text-white p-10 justify-center gap-10 md:gap-20 xl:gap-40">
       <aside>
         <Link
+          prefetch={false}
           href="/"
           className="font-bold text-2xl hover:text-gray-400 transition-all duration-200 ease-in-out"
         >
           StudyPAL
         </Link>
         <p>
-          StudyPAL Ltd.
+          Copyright &copy; StudyPAL Ltd.
           <br />
           Providing interactive courses since 2016
         </p>
