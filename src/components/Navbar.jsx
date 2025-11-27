@@ -15,7 +15,7 @@ export default function Navbar() {
 
   return (
     <nav
-      className={`mb-20 navbar sticky top-0 text-primary px-10 transition-all duration-300 shadow-sm ${
+      className={`z-99 mb-20 navbar sticky top-0 text-primary px-10 transition-all duration-300 shadow-sm ${
         scrolled ? " backdrop-blur-lg bg-base-100/70" : " bg-base-100"
       }`}
     >
