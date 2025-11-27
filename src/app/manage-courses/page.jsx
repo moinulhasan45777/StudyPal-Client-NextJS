@@ -16,7 +16,9 @@ export default function page() {
     }
     const getCourses = async () => {
       try {
-        const res = await fetch("http://localhost:4500/all-courses");
+        const res = await fetch(
+          "https://study-pal-server-api.vercel.app//all-courses"
+        );
         const data = await res.json();
         setAllCourses(data);
       } catch (err) {
@@ -29,9 +31,12 @@ export default function page() {
   // Delete course function
   const handleDelete = async (id) => {
     try {
-      await fetch(`http://localhost:4500/remove-course/${id}`, {
-        method: "DELETE",
-      })
+      await fetch(
+        `https://study-pal-server-api.vercel.app//remove-course/${id}`,
+        {
+          method: "DELETE",
+        }
+      )
         .then((res) => res.json())
         .then(() => {
           // Remove deleted course from state

@@ -10,7 +10,9 @@ export default function page() {
   const [course, setCourse] = useState({});
   useEffect(() => {
     const getCourses = async () => {
-      const res = await fetch(`http://localhost:4500/all-courses/${id}`);
+      const res = await fetch(
+        `https://study-pal-server-api.vercel.app//all-courses/${id}`
+      );
       const data = await res.json();
       setCourse(data);
     };

@@ -8,7 +8,9 @@ export default function FeaturedCourses() {
 
   useEffect(() => {
     const getCourses = async () => {
-      const res = await fetch("http://localhost:4500/all-courses");
+      const res = await fetch(
+        "https://study-pal-server-api.vercel.app/all-courses"
+      );
       const data = await res.json();
       setAllCourses(data);
     };

@@ -38,7 +38,7 @@ export default function page() {
       classStarts,
       image,
     };
-    await fetch("http://localhost:4500/add-course", {
+    await fetch("https://study-pal-server-api.vercel.app//add-course", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(newCourse),
