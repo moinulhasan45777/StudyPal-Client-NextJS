@@ -1,12 +1,19 @@
 "use client";
+
 import React, { useEffect, useState } from "react";
 import { toast } from "react-toastify";
-
+import Link from "next/link";
+import { useAuth } from "@clerk/nextjs";
+import { useRouter } from "next/navigation";
 export default function page() {
   const [allCourses, setAllCourses] = useState([]);
-
+  const { isLoaded, userId } = useAuth();
+  const router = useRouter();
   // Fetch all courses from backend
   useEffect(() => {
+    if (isLoaded && !userId) {
+      router.replace("/login"); // redirect to login if not authenticated
+    }
     const getCourses = async () => {
       try {
         const res = await fetch("http://localhost:4500/all-courses");
@@ -17,7 +24,7 @@ export default function page() {
       }
     };
     getCourses();
-  }, [allCourses]);
+  }, [allCourses, isLoaded, userId, router]);
 
   // Delete course function
   const handleDelete = async (id) => {
@@ -35,6 +42,7 @@ export default function page() {
       toast.error(err.message);
     }
   };
+
   return (
     <div className="p-6">
       <h1 className="text-5xl font-black mb-6 text-center">Manage Courses</h1>
@@ -60,12 +68,15 @@ export default function page() {
               <h2 className="text-xl font-semibold mb-4">{course.title}</h2>
 
               <div className="flex justify-between gap-2 mt-auto">
-                <button className="btn btn-primary px-6 rounded-3xl hover:bg-secondary transition-all duration-200 flex-1">
+                <Link
+                  href={`/all-courses/${course._id}`}
+                  className="btn btn-primary px-6 rounded-3xl text-white hover:bg-secondary transition-all duration-200 flex-1"
+                >
                   View
-                </button>
+                </Link>
                 <button
                   onClick={() => handleDelete(course._id)}
-                  className="btn btn-primary px-6 rounded-3xl hover:bg-secondary transition-all duration-200 flex-1"
+                  className="btn bg-red-700 text-white px-6 rounded-3xl hover:bg-red-500 transition-all duration-200 flex-1"
                 >
                   Delete
                 </button>

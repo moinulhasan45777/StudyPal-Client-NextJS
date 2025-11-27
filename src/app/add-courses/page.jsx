@@ -1,9 +1,18 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
+import { useAuth } from "@clerk/nextjs";
+import { useRouter } from "next/navigation";
 export default function page() {
   const [dateError, setDateError] = useState("");
+  const { isLoaded, userId } = useAuth();
+  const router = useRouter();
+  useEffect(() => {
+    if (isLoaded && !userId) {
+      router.replace("/login"); // redirect to login if not authenticated
+    }
+  }, [isLoaded, userId, router]);
   const handleSubmit = async (e) => {
     e.preventDefault();
     const form = e.target;
