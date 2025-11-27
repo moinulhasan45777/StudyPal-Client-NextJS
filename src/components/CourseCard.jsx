@@ -27,7 +27,8 @@ export default function CourseCard({ course }) {
 
           {/* Details Button */}
           <Link
-            href="#"
+            prefetch={false}
+            href={`/all-courses/${course._id}`}
             className="btn btn-primary rounded-3xl w-full hover:bg-secondary transition-all duration-200"
           >
             Details
