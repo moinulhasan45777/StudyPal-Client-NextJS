@@ -1,5 +1,6 @@
 import FeaturedCourses from "@/components/FeaturedCourses";
 import Header from "@/components/Header";
+import Newsletter from "@/components/Newsletter";
 import Testimonials from "@/components/Testimonials";
 
 export default function Home() {
@@ -14,6 +15,9 @@ export default function Home() {
         </section>
         <section>
           <Testimonials></Testimonials>
+        </section>
+        <section>
+          <Newsletter></Newsletter>
         </section>
       </main>
     </div>
